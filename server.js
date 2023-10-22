@@ -22,12 +22,12 @@ app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/index.html'))
 );
 
-// GET route returns notes.html
+// GET route for /notes returns notes.html
 app.get('/notes', (req, res) =>
   res.sendFile(path.join(__dirname, '/public/notes.html'))
 );
 
-// Generic 404 Page
+// Custom 404 Page
 app.use('*', function(req, res) {
   res.sendFile(__dirname + '/public/404.html')
 })
