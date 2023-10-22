@@ -1,13 +1,11 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
 
-// Import our modular router for /notes
-const notes = require('../db/db.json');
 const app = express();
 
 // set route to return notes json file
 app.get('/notes', (req, res) => 
-    res.sendFile(path.join(__dirname, notes))
+    res.sendFile(path.join(__dirname, '../db/db.json'))
 );
 
 app.post('/notes', (req, res) => {
@@ -26,6 +24,8 @@ app.post('/notes', (req, res) => {
             status: 'success',
             body: newNote,
         }
+
+        // TODO: Add the newNote to the db.json file
 
         console.log(response);
         res.status(201).json(response);
