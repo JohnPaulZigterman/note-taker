@@ -6,7 +6,7 @@ const app = express();
 
 // set route to return notes json file
 app.get('/notes', (req, res) => 
-    res.sendFile(path.join(__dirname, '../db/db.json'))
+    res.sendFile(path.join(__dirname, './db/db.json'))
 );
 
 app.post('/notes', (req, res) => {
@@ -29,13 +29,12 @@ app.post('/notes', (req, res) => {
         // TODO: Add the newNote to the db.json file
         fs.readFile('./db/db.json', function (err, data) {
             var newData = JSON.parse(data);
-            console.log(newData);
+
             newData.push(newNote);
             var pushData = JSON.stringify(newData);
             fs.writeFileSync('./db/db.json', pushData);
         })
 
-        console.log(response);
         res.status(201).json(response);
     } else {
         res.status(500).json('Error in posting note');
