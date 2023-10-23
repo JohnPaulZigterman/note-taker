@@ -1,5 +1,6 @@
 const express = require('express');
 const { v4: uuidv4 } = require('uuid');
+const fs = require('fs');
 
 const app = express();
 
@@ -26,6 +27,13 @@ app.post('/notes', (req, res) => {
         }
 
         // TODO: Add the newNote to the db.json file
+        fs.readFile('./db/db.json', function (err, data) {
+            var newData = JSON.parse(data);
+            console.log(newData);
+            newData.push(newNote);
+            var pushData = JSON.stringify(newData);
+            fs.writeFileSync('./db/db.json', pushData);
+        })
 
         console.log(response);
         res.status(201).json(response);
