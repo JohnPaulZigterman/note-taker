@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path'); 
 const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 
@@ -6,7 +7,7 @@ const app = express();
 
 // set route to return notes json file
 app.get('/notes', (req, res) => 
-    res.sendFile(path.join(__dirname, './db/db.json'))
+    res.sendFile(path.join(__dirname, '../db/db.json'))
 );
 
 app.post('/notes', (req, res) => {
