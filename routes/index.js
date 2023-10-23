@@ -19,7 +19,7 @@ app.post('/notes', (req, res) => {
         const newNote = {
             title,
             text,
-            note_id: uuidv4(),
+            id: uuidv4(),
         };
 
         const response = {
@@ -40,6 +40,8 @@ app.post('/notes', (req, res) => {
     } else {
         res.status(500).json('Error in posting note');
     }
-})
+});
+
+app.delete('notes/delete/:id');
 
 module.exports = app;
