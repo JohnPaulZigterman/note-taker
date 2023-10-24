@@ -24,6 +24,10 @@ I, John Paul Zigterman, completed this project by myself with the aid of the res
 
 https://github.com/JohnPaulZigterman/note-taker 
 
+## Deployed Application On Heroku
+
+https://jpz-note-taker-38ded7123bf4.herokuapp.com/
+
 ## Screenshot
 
 ![Screenshot included](./screenshot.png)
