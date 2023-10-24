@@ -1,4 +1,4 @@
-// Custom middleware that logs out the type and path of each request to the server
+// Middleware that spits out requests in three colors to indicate different types
 const clog = (req, res, next) => {
   const fgCyan = '\x1b[36m';
   const green = "\x1b[32m";

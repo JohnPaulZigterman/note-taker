@@ -25,7 +25,7 @@ app.post('/notes', (req, res) => {
         const response = {
             status: 'success',
             body: newNote,
-        }
+        };
 
         // TODO: Add the newNote to the db.json file
         fs.readFile('./db/db.json', function (err, data) {
@@ -34,7 +34,7 @@ app.post('/notes', (req, res) => {
             newData.push(newNote);
             var pushData = JSON.stringify(newData);
             fs.writeFileSync('./db/db.json', pushData);
-        })
+        });
 
         res.status(201).json(response);
     } else {
@@ -42,6 +42,39 @@ app.post('/notes', (req, res) => {
     }
 });
 
-app.delete('notes/delete/:id');
+app.delete('/notes/:id', function (req, res) {
+    const request = req.params;
+    const requestID = request.id;
+
+
+    fs.readFile('./db/db.json', function (err, data) {
+        
+        var newData = JSON.parse(data);
+
+        var pushData = [];
+
+        var response = {
+            status: 'success',
+            body: '',
+        };
+
+        for (let i = 0; i < newData.length; i++) {
+
+            if (newData[i].id !== requestID) {
+                pushData.push(newData[i]);
+            } else {
+                response.body = 'removed ' + newData[i].title;
+            }
+        };
+
+        var deletedData = JSON.stringify(pushData);
+
+        fs.writeFileSync('./db/db.json', deletedData);
+        
+        res.status(201).json(response);
+        console.log(err);
+
+        })
+    });
 
 module.exports = app;
